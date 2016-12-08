@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>ToDo List</title>
+
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/todo.css">
+	</head>
+
+<body ng-app="toDoList" name="myForm">
+
+	<div class="container" ng-controller="ToDoController">
+		<div class="col-xs-12 col-sm-12 col-md-offset-3 col-md-5 col-lg-offset-3 col-lg-5">
+			<h1 id="neon-tubing">T<span>o</span>D<span>o</span> List</h1>
+			
+			<div class="form">
+				<div class="input-group">
+					<input type="text"  class="form-control" ng-model="task"  placeholder='Fill It!'>
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button" ng-click="addTask()"><span class="glyphicon glyphicon-plus"></span>
+						 Add Task</button>
+					</span>
+				</div>
+			</div>
+			<hr/>
+			
+			<ul class="list-group" ng-show="tasks.length > 0">
+				<li class="list-group-item clearfix task" ng-repeat="todo in tasks" ng-class="{disabled: todo.done}"> 
+					<p class="lead">{{todo.task}}</p>
+					<div>
+						<span class="pull-right">
+							<button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil" 
+								ng-click="editTask($index)"></span></button>
+							<button class="btn btn-primary btn-xs" ng-show="!todo.done"><span class="glyphicon glyphicon-ok" 
+								ng-click="doneTask($index)"></span></button>
+							<button class="btn btn-primary btn-xs" ng-show="todo.done"><span class="glyphicon glyphicon-repeat" 
+								ng-click="unDoneTask($index)"></span></button>
+							<button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove" 
+								ng-click="deleteTask($index)"></span></button>
+						</span>
+					</div>
+				</li>
+			</ul>
+			
+		</div>
+	</div>
+	<br/>
+	<script src="js/angular.min.js"></script>
+	<script src="js/app.js"></script>
+</body>
+</html>
